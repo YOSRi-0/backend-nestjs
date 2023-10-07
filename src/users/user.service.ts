@@ -5,6 +5,10 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 
+// TODO : Remove password from response
+// TODO : Add Column value rules
+// TODO : HANDLE EDGE CASES
+
 @Injectable()
 export class UserService {
   constructor(
