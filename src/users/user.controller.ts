@@ -13,6 +13,7 @@ import {
 import { UserService } from './user.service';
 import { CreateUserDTO, UpdateUserDTO } from './user.dtos';
 import { User } from 'src/typeorm/entities/user';
+import { Public } from 'src/auth/constants';
 
 @Controller('users')
 @UseInterceptors(ClassSerializerInterceptor)
@@ -24,6 +25,7 @@ export class UserController {
     return this.userService.create(createUserDto);
   }
 
+  @Public()
   @Get()
   findAll(): Promise<User[]> {
     return this.userService.findAll();
