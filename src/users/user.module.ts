@@ -3,10 +3,11 @@ import { UserService } from './user.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from 'src/typeorm/entities/user';
 import { UserController } from './user.controller';
+import { IsEmailNotRegistered } from './user.validation';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User])],
-  providers: [UserService],
+  providers: [UserService, IsEmailNotRegistered],
   controllers: [UserController],
   exports: [UserService],
 })

@@ -3,6 +3,7 @@ import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './local-auth.guard';
 import { Public } from './constants';
 import { UserService } from 'src/users/user.service';
+import { CreateUserDTO, UserDTO } from 'src/users/user.dtos';
 
 @Controller('auth')
 export class AuthController {
@@ -13,17 +14,14 @@ export class AuthController {
 
   @Public()
   @Post('signup')
-  async signup(
-    @Body('email') email: string,
-    @Body('password') password: string,
-  ) {
-    return this.userService.create({ email, password });
+  async signup(@Body() createUserDTO: CreateUserDTO) {
+    return this.userService.create(createUserDTO);
   }
 
   @Public()
   @UseGuards(LocalAuthGuard)
   @Post('login')
-  async login(@Body() email: string, @Body() password: string) {
-    return this.authService.login({ email, password });
+  async login(@Body() userDTO: UserDTO) {
+    return this.authService.login(userDTO);
   }
 }
